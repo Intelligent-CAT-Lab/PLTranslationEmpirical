@@ -10,7 +10,7 @@ We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.o
 4. [Apache Commons-CLI](https://github.com/apache/commons-cli)
 5. [Click](https://github.com/pallets/click)
 
-Please download and unzip the `dataset.zip` file from [Zenodo](https://doi.org/10.5281/zenodo.8190051). After unzipping, you should see the following directory structure:
+Please download and unzip the `dataset.zip` file from Zenodo. After unzipping, you should see the following directory structure:
 
 ```
 PLTranslationEmpirical
@@ -50,7 +50,6 @@ PLTranslationEmpirical
 4. GPT-4 Fix Prompt when effect is COMPILE ERROR or RUNTIME ERROR and dataset is Evalplus:
    ```
    You were asked to translate the following $SOURCE_LANG code to $TARGET_LANG:
-   
    $SOURCE_CODE
    
    Your response was the following $TARGET_LANG code:
