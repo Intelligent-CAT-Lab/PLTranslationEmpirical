@@ -185,3 +185,16 @@ Note 2: We consider Non-terminating Execution (NTE) effect as a RUNTIME ERROR an
 ### Appendix
 
 ### Scripts
+
+We provide bash scripts for reproducing our results in this work. First, we discuss the translation script. For doing translation with a model and dataset, first you need to create a `.env` file in the repository and add the following:
+
+```
+OPENAI_API_KEY=<your openai api key>
+LLAMA2_AUTH_TOKEN=<your llama2 auth token from huggingface>
+STARCODER_AUTH_TOKEN=<your starcoder auth token from huggingface>
+```
+
+Then, you can use the command template (`bash scripts/translate.sh <model> <dataset> <src_lang> <trg_lang> <k> <p> <temperature>`) and run the following to translate the `Python -> Java` pair in `codenet` dataset with the `GPT-4`:
+```
+bash scripts/translate.sh GPT-4 codenet Python Java 50 0.95 0.8
+```
