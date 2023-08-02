@@ -147,7 +147,7 @@ class Repair:
             self.errors = json.load(f)
 
         tokenizer, model = None, None
-        device = f'cuda:{self.gpu_id}' if torch.cuda.is_available() else 'cpu'
+        device = f'cuda:{self.args.gpu_id}' if torch.cuda.is_available() else 'cpu'
         if self.args.model != 'GPT-4':
             model_path = ''
             auth_token = None
