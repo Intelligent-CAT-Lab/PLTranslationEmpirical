@@ -215,12 +215,12 @@ PLTranslationEmpirical
 ├── ...
 ```
 
-You can run the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `CodeGeeX` while top-k sampling is `k=0`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
+You can run the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `CodeGeeX` while top-k sampling is `k=50`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
 ```
-bash scripts/translate.sh CodeGeeX codenet Python Java 0 0.95 0.2 0
+bash scripts/translate.sh CodeGeeX codenet Python Java 50 0.95 0.2 0
 ```
 
-3. For all other models (StarCoder, CodeGen, LLaMa, TB-Airoboros, TB-Vicuna), you can execute the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `StarCoder|CodeGen|LLaMa|TB-Airoboros|TB-Vicuna` while top-k sampling is `k=0`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
+3. For all other models (StarCoder, CodeGen, LLaMa, TB-Airoboros, TB-Vicuna), you can execute the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `StarCoder|CodeGen|LLaMa|TB-Airoboros|TB-Vicuna` while top-k sampling is `k=50`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
 ```
-bash scripts/translate.sh StarCoder codenet Python Java 0 0.95 0.2 0
+bash scripts/translate.sh StarCoder codenet Python Java 50 0.95 0.2 0
 ```
