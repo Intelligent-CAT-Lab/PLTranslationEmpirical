@@ -18,7 +18,7 @@ class Translate:
         "Python": "py",
         "Go": "go",
         "C": "c",
-        "C++": "c++"
+        "C++": "cpp"
     }
 
     def __init__(self, dataset) -> None:
@@ -127,7 +127,7 @@ class Translate:
 
 
 if __name__ == "__main__":
-    # Initialize OPENAI-API keys
+
     load_dotenv()
 
     parser = argparse.ArgumentParser(description='run translation with GPT-4 with a given dataset and languages')
@@ -139,7 +139,6 @@ if __name__ == "__main__":
     parser.add_argument('--temperature', help='A value used to warp next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect and is the default. The allowed range is 0.0 to 2.0.', required=True, type=float)
     args = parser.parse_args()
 
-    # Initialize configurations
     source = args.source_lang
     target = args.target_lang
     with Translate(args.dataset) as translator:
