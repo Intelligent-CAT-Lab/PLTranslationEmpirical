@@ -194,7 +194,33 @@ LLAMA2_AUTH_TOKEN=<your llama2 auth token from huggingface>
 STARCODER_AUTH_TOKEN=<your starcoder auth token from huggingface>
 ```
 
-Then, you can use the command template (`bash scripts/translate.sh <model> <dataset> <src_lang> <trg_lang> <k> <p> <temperature>`) and run the following to translate the `Python -> Java` pair in `codenet` dataset with the `GPT-4`:
+1. Translation with GPT-4: You can run the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `GPT-4` while top-k sampling is `k=50`, top-p sampling is `p=0.95`, and `temperature=0.7`:
 ```
-bash scripts/translate.sh GPT-4 codenet Python Java 50 0.95 0.8
+bash scripts/translate.sh GPT-4 codenet Python Java 50 0.95 0.7
+```
+
+2. Translation with CodeGeeX: Prior to running the script, you need to clone the CodeGeeX repository from [here](https://github.com/THUDM/CodeGeeX) and use the instructions from their artifacts to download their model weights. After cloning it inside `PLTranslationEmpirical` and downloading the model weights, your directory structure should be like the following:
+
+```
+PLTranslationEmpirical
+├── dataset
+    ├── codenet
+    ├── avatar
+    ├── evalplus
+    ├── real-life-cli
+├── CodeGeeX
+    ├── codegeex
+    ├── codegeex_13b.pt # this file is the model weight
+    ├── ...
+├── ...
+```
+
+You can run the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `CodeGeeX` while top-k sampling is `k=0`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
+```
+bash scripts/translate.sh CodeGeeX codenet Python Java 0 0.95 0.2 0
+```
+
+3. For all other models (StarCoder, CodeGen, LLaMa, TB-Airoboros, TB-Vicuna), you can execute the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `StarCoder|CodeGen|LLaMa|TB-Airoboros|TB-Vicuna` while top-k sampling is `k=0`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
+```
+bash scripts/translate.sh StarCoder codenet Python Java 0 0.95 0.2 0
 ```
