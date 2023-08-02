@@ -196,7 +196,7 @@ STARCODER_AUTH_TOKEN=<your starcoder auth token from huggingface>
 
 1. Translation with GPT-4: You can run the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `GPT-4` while top-k sampling is `k=50`, top-p sampling is `p=0.95`, and `temperature=0.7`:
 ```
-bash scripts/translate.sh GPT-4 codenet Python Java 50 0.95 0.7
+bash scripts/translate.sh GPT-4 codenet Python Java 50 0.95 0.7 0
 ```
 
 2. Translation with CodeGeeX: Prior to running the script, you need to clone the CodeGeeX repository from [here](https://github.com/THUDM/CodeGeeX) and use the instructions from their artifacts to download their model weights. After cloning it inside `PLTranslationEmpirical` and downloading the model weights, your directory structure should be like the following:
