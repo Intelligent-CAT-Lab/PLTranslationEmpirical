@@ -8,3 +8,4 @@ transformers==4.31.0
 accelerate==0.21.0
 einops==0.6.1
 codegeex==1.0
+openpyxl==3.1.2
