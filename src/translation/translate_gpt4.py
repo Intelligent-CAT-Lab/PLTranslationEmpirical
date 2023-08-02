@@ -21,9 +21,9 @@ class Translate:
         "C++": "c++"
     }
 
-    def __init__(self, model, dataset) -> None:
+    def __init__(self, dataset) -> None:
         # Set up OpenAI API key
-        self.model = model
+        self.model = 'GPT-4'
         self.dataset = dataset
 
     def __enter__(self):
@@ -103,29 +103,24 @@ class Translate:
             code_id = source_file.stem
             code_as_str = source_file.read_text(encoding="utf-8")
 
-            if self.model != "GPT-4":
-                pass
+            target_dir = self.out_dir.joinpath(f"{source}", f"{target}")
+            if not target_dir.exists():
+                target_dir.mkdir(parents=True)
 
-            else:
-                target_dir = self.out_dir.joinpath(f"{source}", f"{target}")
-                if not target_dir.exists():
-                    target_dir.mkdir(parents=True)
+            filename_of_translated_code = target_dir.joinpath(f"{code_id}.{Translate.EXTENSTIONS[target]}")
 
-                filename_of_translated_code = target_dir.joinpath(
-                    f"{code_id}.{Translate.EXTENSTIONS[target]}")
+            translated_code_fp = Path(filename_of_translated_code)
+            if translated_code_fp.exists():
+                continue
 
-                translated_code_fp = Path(filename_of_translated_code)
-                if translated_code_fp.exists():
-                    continue
+            translated_code = self.translate_with_OPENAI(source, code_as_str, target)
+            translated_code = re.sub('public\s*class\s*.+', 'public class ' + code_id + ' {', translated_code)
 
-                translated_code = self.translate_with_OPENAI(source, code_as_str, target)
-                translated_code = re.sub('public\s*class\s*.+', 'public class ' + code_id + ' {', translated_code)
+            if self.dataset == 'evalplus' and target == 'Java':
+                translated_code = 'package com.example;\n' + translated_code
 
-                if self.dataset == 'evalplus' and target == 'Java':
-                    translated_code = 'package com.example;\n' + translated_code
-
-                with open(filename_of_translated_code, "w") as f:
-                    print(translated_code, file=f)
+            with open(filename_of_translated_code, "w") as f:
+                print(translated_code, file=f)
                     
     def __exit__(self, exception, _, __):
         print(exception)
@@ -135,8 +130,7 @@ if __name__ == "__main__":
     # Initialize OPENAI-API keys
     load_dotenv()
 
-    parser = argparse.ArgumentParser(description='run translation for a given model, dataset and languages')
-    parser.add_argument('--model', help='model to use for code translation. should be one of [GPT-4,StarCoder,CodeGen,CodeGeeX,LLaMa,TB-Airoboros,TB-Vicuna]', required=True, type=str)
+    parser = argparse.ArgumentParser(description='run translation with GPT-4 with a given dataset and languages')
     parser.add_argument('--dataset', help='dataset to use for code translation. should be one of [codenet,avatar,evalplus]', required=True, type=str)
     parser.add_argument('--source_lang', help='source language to use for code translation. should be one of [Python,Java,C,C++,Go]', required=True, type=str)
     parser.add_argument('--target_lang', help='target language to use for code translation. should be one of [Python,Java,C,C++,Go]', required=True, type=str)
@@ -148,6 +142,6 @@ if __name__ == "__main__":
     # Initialize configurations
     source = args.source_lang
     target = args.target_lang
-    with Translate(args.model, args.dataset) as translator:
-        logging.info(f"translating examples from {source} to {target} using {args.model} model and {args.dataset} dataset")
+    with Translate(args.dataset) as translator:
+        logging.info(f"translating examples from {source} to {target} using GPT-4 and {args.dataset} dataset")
         translator.translate(source, target)
