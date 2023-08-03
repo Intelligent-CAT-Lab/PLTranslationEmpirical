@@ -6,7 +6,7 @@ We used 16 NVIDIA A100 GPUs with 80GBs of memory for inferencing models. Moreove
 
 ### Dataset
 
-We uploaded the dataset we used in our empirical study to [Zenodo](). The dataset is organized as follows:
+We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.org/10.5281/zenodo.8212996). The dataset is organized as follows:
 
 1. [CodeNet](https://github.com/IBM/Project_CodeNet)
 2. [AVATAR](https://github.com/wasiahmad/AVATAR)
@@ -25,6 +25,8 @@ PLTranslationEmpirical
     ├── real-life-cli
 ├── ...
 ```
+
+Moreover, we provide manual labeling of translation bugs, vanilla generations of each model, and the generated repairs inside `artifacts.zip`.
 
 ### Prompts
 1. GPT-4 Vanilla Prompt:
