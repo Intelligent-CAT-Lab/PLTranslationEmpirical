@@ -1,5 +1,9 @@
 # Programming Language Translation: An Empirical Study
 
+### Compute Requirements
+
+We used 16 NVIDIA A100 GPUs with 80GBs of memory for inferencing models. Moreover, for compiling and testing the generated translations, we used Python 3.10, g++ 11, GCC Clang 14.0, Java 11, and Go 1.20 for Python, C++, C, Java, and Go, respectively.
+
 ### Dataset
 
 We uploaded the dataset we used in our empirical study to [Zenodo](). The dataset is organized as follows:
