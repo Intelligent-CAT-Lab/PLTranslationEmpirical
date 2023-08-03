@@ -2,7 +2,7 @@
 
 ### Dataset
 
-We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.org/10.5281/zenodo.8190051). The dataset is organized as follows:
+We uploaded the dataset we used in our empirical study to [Zenodo](). The dataset is organized as follows:
 
 1. [CodeNet](https://github.com/IBM/Project_CodeNet)
 2. [AVATAR](https://github.com/wasiahmad/AVATAR)
@@ -183,6 +183,7 @@ Note 1: For StarCoder, the prompt is encapsulated inside special tokens `<fim_pr
 Note 2: We consider Non-terminating Execution (NTE) effect as a RUNTIME ERROR and replace the STDERR with a custom feedback "the program enters infinite loop".
 
 ### Appendix
+TO BE ADDED
 
 ### Scripts
 
@@ -223,4 +224,23 @@ bash scripts/translate.sh CodeGeeX codenet Python Java 50 0.95 0.2 0
 3. For all other models (StarCoder, CodeGen, LLaMa, TB-Airoboros, TB-Vicuna), you can execute the following command to translate all `Python -> Java` code snippets in `codenet` dataset with the `StarCoder|CodeGen|LLaMa|TB-Airoboros|TB-Vicuna` while top-k sampling is `k=50`, top-p sampling is `p=0.95`, and `temperature=0.2` on GPU `gpu_id=0`:
 ```
 bash scripts/translate.sh StarCoder codenet Python Java 50 0.95 0.2 0
+```
+
+4. For compile and testing of CodeNet, AVATAR, and Evalplus (Python to Java) translations from GPT-4, and generating fix reports, you can run the following commands:
+```
+bash scripts/test_avatar.sh Python Java GPT-4 fix_reports 1
+bash scripts/test_codenet.sh Python Java GPT-4 fix_reports 1
+bash scripts/test_evalplus.sh Python Java GPT-4 fix_reports 1
+```
+
+5. For repairing unsuccessful translations of Java -> Python in CodeNet dataset with GPT-4, you can run the following commands:
+```
+bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 compile
+bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 runtime
+bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 incorrect
+```
+
+6. For cleaning translations of open-source LLMs (i.e., StarCoder) in codenet, you can run the following command:
+```
+bash scripts/clean_generations.sh StarCoder codenet
 ```
