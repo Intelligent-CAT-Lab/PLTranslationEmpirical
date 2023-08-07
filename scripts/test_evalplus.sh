@@ -4,7 +4,7 @@ export PYTHONIOENCODING=utf-8;
 
 function prompt() {
     echo;
-    echo "Syntax: bash scripts/test_avatar.sh SRC_LANG TRG_LANG MODEL OUTPUT_DIR ATTEMPT";
+    echo "Syntax: bash scripts/test_evalplus.sh SRC_LANG TRG_LANG MODEL OUTPUT_DIR ATTEMPT";
     echo "SRC_LANG: source language";
     echo "TRG_LANG: target language";
     echo "MODEL: name of the model to use";
