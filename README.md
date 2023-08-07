@@ -4,6 +4,13 @@
 
 We used 16 NVIDIA A100 GPUs with 80GBs of memory for inferencing models. Moreover, for compiling and testing the generated translations, we used Python 3.10, g++ 11, GCC Clang 14.0, Java 11, and Go 1.20 for Python, C++, C, Java, and Go, respectively.
 
+### Dependencies
+
+To install all dependencies, please execute the following command:
+```
+pip3 install -r requirements.txt
+```
+
 ### Dataset
 
 We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.org/10.5281/zenodo.8212996). The dataset is organized as follows:
