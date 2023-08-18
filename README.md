@@ -196,7 +196,18 @@ Note 1: For StarCoder, the prompt is encapsulated inside special tokens `<fim_pr
 Note 2: We consider Non-terminating Execution (NTE) effect as a RUNTIME ERROR and replace the STDERR with a custom feedback "the program enters infinite loop".
 
 ### Appendix
-TO BE ADDED
+
+The following figures correspond to open-source LLMs (i.e., StarCoder, CodeGen, and LLaMa-2) which were used for mitigating translation bugs (similar to Figure 6).
+
+1. CodeGen:
+![alt text](misc/codegen.png)
+
+1. LLaMa-2:
+![alt text](misc/llama2.png)
+
+1. StarCoder:
+![alt text](misc/starcoder.png)
+
 
 ### Scripts
 
