@@ -78,7 +78,7 @@ def main(args):
     for f in tqdm(in_files):
         prompt_file = f'{in_folder}/{f}'
 
-        with open(prompt_file, "r") as fin:
+        with open(prompt_file, "r", encoding="ISO-8859-1", errors='ignore') as fin:
             prompt = fin.readlines()
 
             if args.model == 'CodeGeeX':
