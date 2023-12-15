@@ -1,4 +1,4 @@
-# Programming Language Translation: An Empirical Study
+# Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code
 
 ### Compute Requirements
 
@@ -13,7 +13,7 @@ pip3 install -r requirements.txt
 
 ### Dataset
 
-We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.org/10.5281/zenodo.8212996). The dataset is organized as follows:
+We uploaded the dataset we used in our empirical study to [Zenodo](https://doi.org/10.5281/zenodo.10146077). The dataset is organized as follows:
 
 1. [CodeNet](https://github.com/IBM/Project_CodeNet)
 2. [AVATAR](https://github.com/wasiahmad/AVATAR)
