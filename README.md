@@ -1,5 +1,10 @@
 # Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code
 
+[![Install](https://img.shields.io/badge/install-instructions-blue)](README.md#install)
+[![Dependencies](https://img.shields.io/badge/install-dependencies-blue)](README.md#dependencies)
+[![GitHub](https://img.shields.io/github/license/Intelligent-CAT-Lab/PLTranslationEmpirical?color=blue)](LICENSE)
+[![Data](https://zenodo.org/badge/DOI/10.5281/zenodo.8190051.svg)](https://zenodo.org/doi/10.5281/zenodo.8190051)
+
 Artifact repository for the paper [_Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code_](http://arxiv.org/abs/2308.03109), accepted at _ICSE 2024_, Lisbon, Portugal.
 Authors are [Rangeet Pan][rangeet]* [Ali Reza Ibrahimzada][ali]*, [Rahul Krishna][rahul], Divya Sankar, Lambert Pougeum Wassi, Michele Merler, Boris Sobolev, Raju Pavuluri, Saurabh Sinha, and [Reyhaneh Jabbarvand][reyhaneh].
 
@@ -8,19 +13,38 @@ Authors are [Rangeet Pan][rangeet]* [Ali Reza Ibrahimzada][ali]*, [Rahul Krishna
 [rahul]: http://rkrsn.us/
 [reyhaneh]: https://reyhaneh.cs.illinois.edu/index.htm
 
-### Compute Requirements
+### Install
+This repository contains the source code for reproducing the results in our paper. Please start by cloning this repository:
+```
+git clone https://github.com/Intelligent-CAT-Lab/PLTranslationEmpirical
+```
 
-We used 16 NVIDIA A100 GPUs with 80GBs of memory for inferencing models. Moreover, for compiling and testing the generated translations, we used Python 3.10, g++ 11, GCC Clang 14.0, Java 11, and Go 1.20 for Python, C++, C, Java, and Go, respectively.
+We recommend using a virtual environment for running the scripts. Please download `conda 23.11.0` from this [link](https://docs.conda.io/projects/miniconda/en/latest/miniconda-other-installer-links.html). You can create a virtual environment using the following command:
+```
+conda create -n plempirical python=3.10.13
+```
+
+After creating the virtual environment, you can activate it using the following command:
+```
+conda activate plempirical
+```
+
+You can run the following command to make sure that you are using the correct version of Python:
+```
+python3 --version && pip3 --version
+```
 
 ### Dependencies
-
-To install all dependencies, please execute the following command:
+To install all software dependencies, please execute the following command:
 ```
 pip3 install -r requirements.txt
 ```
 
-### Dataset
+As for hardware dependencies, we used 16 NVIDIA A100 GPUs with 80GBs of memory for inferencing models. The models can be inferenced on any combination of GPUs as long as the reader can properly distribute the model weights across the GPUs. We did not perform weight distribution since we had enough memory (80 GB) per GPU.
 
+Moreover, for compiling and testing the generated translations, we used Python 3.10, g++ 11, GCC Clang 14.0, Java 11, Go 1.20, Rust 1.73, and .Net 7.0.14 for Python, C++, C, Java, Go, Rust, and C#, respectively. Overall, we recommend using a machine with Linux OS and at least 32GB of RAM for running the scripts.
+
+### Dataset
 We uploaded the dataset we used in our empirical study to [Zenodo](https://zenodo.org/doi/10.5281/zenodo.8190051). The dataset is organized as follows:
 
 1. [CodeNet](https://github.com/IBM/Project_CodeNet)
@@ -41,12 +65,15 @@ PLTranslationEmpirical
 ├── ...
 ```
 
-Moreover, we provide manual labeling of translation bugs, vanilla generations of each model, and the generated repairs inside `artifacts.zip`.
+The structure of each dataset is as follows:
 
-Please refer to  [`prompts`](prompts) for a detailed description of the prompts we used for each model and dataset.
+1. CodeNet & Avatar: Each directory in these datasets correspond to a source language where each include two directories `Code` and `TestCases` for code snippets and test cases, respectively. Each code snippet has an `id` in the filename, where the `id` is used as a prefix for test I/O files.
+
+2. Evalplus: The source language code snippets follow a similar structure as CodeNet and Avatar. However, as a one time effort, we manually created the test cases in the target Java language inside a maven project, `evalplus_java`. To evaluate the translations from an LLM, we recommend moving the generated Java code snippets to the `src/main/java` directory of the maven project and then running the command `mvn clean test surefire-report:report -Dmaven.test.failure.ignore=true` to compile, test, and generate reports for the translations.
+
+3. Real-life Projects: The `real-life-cli` directory represents two real-life CLI projects from Java and Python. These datasets only contain code snippets as files and no test cases. As mentioned in the paper, the authors manually evaluated the translations for these datasets.
 
 ### Scripts
-
 We provide bash scripts for reproducing our results in this work. First, we discuss the translation script. For doing translation with a model and dataset, first you need to create a `.env` file in the repository and add the following:
 
 ```
