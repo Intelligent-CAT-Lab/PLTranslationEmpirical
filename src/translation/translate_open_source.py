@@ -17,7 +17,7 @@ logging.basicConfig(filename=f"logs/translation.log", level=logging.INFO, format
 
 def main(args):
 
-    extensions = { 'Python': 'py','C': 'c','C++': 'c++','Java': 'java','Go': 'go' }
+    extensions = { 'Python': 'py','C': 'c','C++': 'c++','Java': 'java','Go': 'go', "Rust": "rs", "C#": "cs" }
 
     in_folder = f'dataset/{args.dataset}/{args.source_lang}/Code'
     out_folder = f'output/{args.model}/{args.dataset}/{args.source_lang}/{args.target_lang}'

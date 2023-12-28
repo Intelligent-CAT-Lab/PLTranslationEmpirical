@@ -18,7 +18,9 @@ class Translate:
         "Python": "py",
         "Go": "go",
         "C": "c",
-        "C++": "cpp"
+        "C++": "cpp",
+        "Rust": "rs",
+        "C#": "cs"
     }
 
     def __init__(self, dataset) -> None:
