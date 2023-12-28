@@ -113,21 +113,48 @@ bash scripts/translate.sh CodeGeeX codenet Python Java 50 0.95 0.2 0
 bash scripts/translate.sh StarCoder codenet Python Java 50 0.95 0.2 0
 ```
 
-4. For compile and testing of CodeNet, AVATAR, and Evalplus (Python to Java) translations from GPT-4, and generating fix reports, you can run the following commands:
+4. For translating and testing pairs with traditional techniques (i.e., C2Rust, CxGO, Java2C#), you can run the following commands:
+```
+bash scripts/translate_transpiler.sh codenet C Rust c2rust fix_report
+bash scripts/translate_transpiler.sh codenet C Go cxgo fix_reports
+bash scripts/translate_transpiler.sh codenet Java C# java2c# fix_reports
+bash scripts/translate_transpiler.sh avatar Java C# java2c# fix_reports
+```
+
+You need to make sure you have installed [C2Rust](https://github.com/immunant/c2rust), [CxGO](https://github.com/gotranspile/cxgo), and [Java2C#](https://github.com/paulirwin/JavaToCSharp) on your machine. Please refer to their repositories for installation instructions. For Java2C#, you need to create a `.csproj` file like below:
+```
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
+```
+
+5. For compile and testing of CodeNet, AVATAR, and Evalplus (Python to Java) translations from GPT-4, and generating fix reports, you can run the following commands:
 ```
 bash scripts/test_avatar.sh Python Java GPT-4 fix_reports 1
 bash scripts/test_codenet.sh Python Java GPT-4 fix_reports 1
 bash scripts/test_evalplus.sh Python Java GPT-4 fix_reports 1
 ```
 
-5. For repairing unsuccessful translations of Java -> Python in CodeNet dataset with GPT-4, you can run the following commands:
+6. For repairing unsuccessful translations of Java -> Python in CodeNet dataset with GPT-4, you can run the following commands:
 ```
 bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 compile
 bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 runtime
 bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 incorrect
 ```
 
-6. For cleaning translations of open-source LLMs (i.e., StarCoder) in codenet, you can run the following command:
+7. For cleaning translations of open-source LLMs (i.e., StarCoder) in codenet, you can run the following command:
 ```
 bash scripts/clean_generations.sh StarCoder codenet
 ```
+
+Please refer to [`/prompts`](/prompts/README.md) for different vanilla and repair prompts used in our study.
+
+### Contact
+We look forward to hearing your feedback. Please contact [Rangeet Pan](mailto:rangeet.pan@ibm.com) or [Ali Reza Ibrahimzada](mailto:alirezai@illinois.edu) for any questions or comments 🙏.
