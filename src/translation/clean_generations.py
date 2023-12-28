@@ -1,3 +1,8 @@
+"""
+We used a simple heuristic to clean the generations of the open-source models. Feel free to play with the extraction
+heuristic to get better results.
+"""
+
 import os
 import re
 import argparse

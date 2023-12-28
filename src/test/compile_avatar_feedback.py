@@ -239,7 +239,7 @@ def main(args):
 
             try:
                 print('Filename: ', files[i])
-                subprocess.run("g++ -o output -std=c++11 " + translation_dir + "/" + files[i], check=True, capture_output=True, shell=True, timeout=10)
+                subprocess.run("g++ -o exec_output -std=c++11 " + translation_dir + "/" + files[i], check=True, capture_output=True, shell=True, timeout=10)
                 
                 tests_passed = 0
                 for j in range(1000):
@@ -253,7 +253,7 @@ def main(args):
                     with open(test_dir+"/"+ files[i].split(".")[0]+f"_{j}.in" , 'r') as f:
                         f_in = f.read()
                     f_out = open(test_dir+"/"+ files[i].split(".")[0]+f"_{j}.out", "r").read()
-                    p = Popen(['./output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)
+                    p = Popen(['./exec_output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
                     try:
                         stdout, stderr_data = p.communicate(input=f_in.encode(), timeout=100)

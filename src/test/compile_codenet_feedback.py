@@ -112,11 +112,11 @@ def main(args):
 
             try:
                 print('Filename: ', files[i])
-                subprocess.run("g++ -o output -std=c++11 " + translation_dir+ "/"+ files[i], check=True, capture_output=True, shell=True)
+                subprocess.run("g++ -o exec_output -std=c++11 " + translation_dir+ "/"+ files[i], check=True, capture_output=True, shell=True)
                 with open(test_dir+"/"+ files[i].split(".")[0]+"_in.txt" , 'r') as f:
                     f_in = f.read()
                 f_out = open(test_dir+"/"+ files[i].split(".")[0]+"_out.txt", "r").read()
-                p = Popen(['./output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)    
+                p = Popen(['./exec_output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)    
 
                 try:
                     stdout, stderr_data = p.communicate(input=f_in.encode(), timeout=100)

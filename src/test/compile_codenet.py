@@ -99,13 +99,13 @@ def main(args):
 
             try:
                 print('Filename: ', files[i])
-                subprocess.run("g++ -o output -std=c++11 " + translation_dir+ "/"+ files[i], check=True, capture_output=True, shell=True)
+                subprocess.run("g++ -o exec_output -std=c++11 " + translation_dir+ "/"+ files[i], check=True, capture_output=True, shell=True)
 
                 with open(test_dir+"/"+ files[i].split(".")[0]+"_in.txt" , 'r') as f:
                     f_in = f.read()
 
                 f_out = open(test_dir+"/"+ files[i].split(".")[0]+"_out.txt", "r").read()
-                p = Popen(['./output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)    
+                p = Popen(['./exec_output'], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)    
 
                 try:
                     stdout, stderr_data = p.communicate(input=f_in.encode(), timeout=100)
@@ -194,9 +194,44 @@ def main(args):
             wd =  os.getcwd()
             if os.path.isfile(wd + "/" + files[i].split(".")[0]):
                 os.remove(wd + "/" + files[i].split(".")[0])        
+    
+    elif args.target_lang == "Rust":
+
+        for i in range(len(files)):
+
+            try:
+                print('Filename: ', files[i])
+                bin_name = files[i].split('.')[0]
+
+                with open(f"dataset/codenet/{args.source_lang}/TestCases/"+ files[i].split(".")[0]+"_in.txt" , 'r') as f:
+                    f_in = f.read()
+                
+                f_out = open(f"dataset/codenet/{args.source_lang}/TestCases/"+ files[i].split(".")[0]+"_out.txt", "r").read()
+
+                subprocess.run(f'rustc {translation_dir}/{files[i]}', check=True, capture_output=True, shell=True, timeout=30)
+                p = Popen(['./ ' + bin_name], cwd=os.getcwd(), stdin=PIPE, stdout=PIPE, stderr=PIPE)
+
+                try:
+                    stdout, stderr_data = p.communicate(input=f_in.encode(), timeout=100)
+                except subprocess.TimeoutExpired:
+                    infinite_loop.append(files[i])
+                    continue
+
+                if stdout.decode().strip() == f_out.strip():
+                    test_passed.append(files[i])
+                else:
+                    if stderr_data.decode() == '':
+                        test_failed.append(files[i])
+                        test_failed_details.append('Filename: ' + files[i] + ' Actual: ' + str(f_out) + ' Generated: ' + str(stdout.decode()))  
+                    else:
+                        runtime_failed.append(files[i])
+                        runtime_failed_details.append('Filename: ' + files[i] + ' Error_type: ' + str(stderr_data.decode())) 
         
+            except Exception as e:
+                compile_failed.append(files[i])
+
     else:
-        print("language:{} is not yet supported. select from the following languages[Python,Java,C,C++,Go]".format(args.target_lang))
+        print("language:{} is not yet supported. select from the following languages[Python,Java,C,C++,Go,Rust,C#]".format(args.target_lang))
         return
 
     test_failed = list(set(test_failed))
