@@ -1,9 +1,10 @@
 # Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code
 
+[![Preprint](https://img.shields.io/badge/read-preprint-blue)](http://arxiv.org/abs/2308.03109)
 [![Install](https://img.shields.io/badge/install-instructions-blue)](README.md#install)
 [![Dependencies](https://img.shields.io/badge/install-dependencies-blue)](README.md#dependencies)
-[![Scripts](https://img.shields.io/badge/scripts-blue)](README.md#scripts)
-[![Artifacts](https://img.shields.io/badge/artifacts-blue)](README.md#artifacts)
+[![Scripts](https://img.shields.io/badge/run-scripts-blue)](README.md#scripts)
+[![Artifacts](https://img.shields.io/badge/check-artifacts-blue)](README.md#artifacts)
 [![GitHub](https://img.shields.io/github/license/Intelligent-CAT-Lab/PLTranslationEmpirical?color=blue)](LICENSE)
 [![Data](https://zenodo.org/badge/DOI/10.5281/zenodo.8190051.svg)](https://zenodo.org/doi/10.5281/zenodo.8190051)
 
