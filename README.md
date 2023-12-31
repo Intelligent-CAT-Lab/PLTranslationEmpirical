@@ -2,6 +2,8 @@
 
 [![Install](https://img.shields.io/badge/install-instructions-blue)](README.md#install)
 [![Dependencies](https://img.shields.io/badge/install-dependencies-blue)](README.md#dependencies)
+[![Scripts](https://img.shields.io/badge/scripts-blue)](README.md#scripts)
+[![Artifacts](https://img.shields.io/badge/artifacts-blue)](README.md#artifacts)
 [![GitHub](https://img.shields.io/github/license/Intelligent-CAT-Lab/PLTranslationEmpirical?color=blue)](LICENSE)
 [![Data](https://zenodo.org/badge/DOI/10.5281/zenodo.8190051.svg)](https://zenodo.org/doi/10.5281/zenodo.8190051)
 
@@ -155,6 +157,13 @@ bash scripts/clean_generations.sh StarCoder codenet
 ```
 
 Please refer to [`/prompts`](/prompts/README.md) for different vanilla and repair prompts used in our study.
+
+### Artifacts
+Please download the `artifacts.zip` file from our [Zenodo](https://zenodo.org/doi/10.5281/zenodo.8190051) repository. We have organized the artifacts as follows:
+1. RQ1 - Translations: This directory contains the translations from all LLMs and for all datasets. We have added an excel file to show a detailed breakdown of the translation results.
+2. RQ2 - Manual Labeling: This directory contains an excel file which includes the manual labeling results for all translation bugs.
+3. RQ3 - Alternative Approaches: This directory contains the translations from all alternative approaches (i.e., C2Rust, CxGO, Java2C#). We have added an excel file to show a detailed breakdown of the translation results.
+4. RQ4 - Mitigating Translation Bugs: This directory contains the fix results of GPT-4, StarCoder, CodeGen, and Llama 2. We have added an excel file to show a detailed breakdown of the fix results.
 
 ### Contact
 We look forward to hearing your feedback. Please contact [Rangeet Pan](mailto:rangeet.pan@ibm.com) or [Ali Reza Ibrahimzada](mailto:alirezai@illinois.edu) for any questions or comments 🙏.
