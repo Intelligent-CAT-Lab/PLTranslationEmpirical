@@ -46,6 +46,20 @@ As for hardware dependencies, we used 16 NVIDIA A100 GPUs with 80GBs of memory f
 
 Moreover, for compiling and testing the generated translations, we used Python 3.10, g++ 11, GCC Clang 14.0, Java 11, Go 1.20, Rust 1.73, and .Net 7.0.14 for Python, C++, C, Java, Go, Rust, and C#, respectively. Overall, we recommend using a machine with Linux OS and at least 32GB of RAM for running the scripts.
 
+For running scripts of alternative approaches, you need to make sure you have installed [C2Rust](https://github.com/immunant/c2rust), [CxGO](https://github.com/gotranspile/cxgo), and [Java2C#](https://github.com/paulirwin/JavaToCSharp) on your machine. Please refer to their repositories for installation instructions. For Java2C#, you need to create a `.csproj` file like below:
+```
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
+```
+
 ### Dataset
 We uploaded the dataset we used in our empirical study to [Zenodo](https://zenodo.org/doi/10.5281/zenodo.8190051). The dataset is organized as follows:
 
@@ -123,20 +137,6 @@ bash scripts/translate_transpiler.sh codenet Java C# java2c# fix_reports
 bash scripts/translate_transpiler.sh avatar Java C# java2c# fix_reports
 ```
 
-You need to make sure you have installed [C2Rust](https://github.com/immunant/c2rust), [CxGO](https://github.com/gotranspile/cxgo), and [Java2C#](https://github.com/paulirwin/JavaToCSharp) on your machine. Please refer to their repositories for installation instructions. For Java2C#, you need to create a `.csproj` file like below:
-```
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-</Project>
-```
-
 5. For compile and testing of CodeNet, AVATAR, and Evalplus (Python to Java) translations from GPT-4, and generating fix reports, you can run the following commands:
 ```
 bash scripts/test_avatar.sh Python Java GPT-4 fix_reports 1
@@ -156,7 +156,7 @@ bash scripts/repair.sh GPT-4 codenet Python Java 50 0.95 0.7 0 1 incorrect
 bash scripts/clean_generations.sh StarCoder codenet
 ```
 
-Please refer to [`/prompts`](/prompts/README.md) for different vanilla and repair prompts used in our study.
+Please note that for the above commands, you can change the dataset and model name to execute the same thing for other datasets and models. Moreover, you can refer to [`/prompts`](/prompts/README.md) for different vanilla and repair prompts used in our study.
 
 ### Artifacts
 Please download the `artifacts.zip` file from our [Zenodo](https://zenodo.org/doi/10.5281/zenodo.8190051) repository. We have organized the artifacts as follows:
