@@ -1,5 +1,8 @@
 # Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code
 
+<img padding="10" align="right" src="https://www.acm.org/binaries/content/gallery/acm/publications/artifact-review-v1_1-badges/artifacts_evaluated_reusable_v1_1.png" alt="ACM Artifacts Evaluated - Reusable v1.1" width="114" height="113"/>
+<img padding="10" align="right" src="https://www.acm.org/binaries/content/gallery/acm/publications/artifact-review-v1_1-badges/artifacts_available_v1_1.png" alt="ACM Artifacts Available v1.1" width="114" height="113"/>
+
 [![Preprint](https://img.shields.io/badge/read-preprint-blue)](http://arxiv.org/abs/2308.03109)
 [![Install](https://img.shields.io/badge/install-instructions-blue)](README.md#install)
 [![Dependencies](https://img.shields.io/badge/install-dependencies-blue)](README.md#dependencies)
