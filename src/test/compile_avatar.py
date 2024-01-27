@@ -12,7 +12,7 @@ def main(args):
     translation_dir = f"output/{args.model}/{dataset}/{args.source_lang}/{args.target_lang}"
     test_dir = f"dataset/{dataset}/{args.source_lang}/TestCases"
     os.makedirs(args.report_dir, exist_ok=True)
-    files = [f for f in os.listdir(translation_dir) if f != '.DS_Store']
+    files = [f for f in os.listdir(translation_dir) if f.split(".")[-1] in ["py", "java", "c", "cpp", "go"]]
 
     compile_failed = []
     test_passed =[]
@@ -65,7 +65,10 @@ def main(args):
                             f_out = str(round(float(f_out), min_dec_points))
 
                     except:
-                        stdout = stdout.decode()
+                        try: # if stdout is already decoded as String, then pass
+                            stdout = stdout.decode()
+                        except:
+                            pass
 
                     if(stdout.strip()==f_out.strip()):
                         tests_passed+=1
@@ -125,7 +128,10 @@ def main(args):
                             f_out = str(round(float(f_out), min_dec_points))
 
                     except:
-                        stdout = stdout.decode()
+                        try:
+                            stdout = stdout.decode()
+                        except:
+                            pass
 
                     if(stdout.strip()==f_out.strip()):
                         tests_passed+=1
@@ -190,7 +196,10 @@ def main(args):
                             f_out = str(round(float(f_out), min_dec_points))
 
                     except:
-                        stdout = stdout.decode()
+                        try:
+                            stdout = stdout.decode()
+                        except:
+                            pass
 
                     if(stdout.strip()==f_out.strip()):
                         tests_passed+=1
@@ -250,7 +259,10 @@ def main(args):
                             f_out = str(round(float(f_out), min_dec_points))
 
                     except:
-                        stdout = stdout.decode()
+                        try:
+                            stdout = stdout.decode()
+                        except:
+                            pass
 
                     if(stdout.strip()==f_out.strip()):
                         tests_passed+=1
@@ -310,7 +322,10 @@ def main(args):
                             f_out = str(round(float(f_out), min_dec_points))
 
                     except:
-                        stdout = stdout.decode()
+                        try:
+                            stdout = stdout.decode()
+                        except:
+                            pass
 
                     if(stdout.strip()==f_out.strip()):
                         tests_passed+=1
@@ -338,6 +353,11 @@ def main(args):
     compile_failed = list(set(compile_failed))
     infinite_loop = list(set(infinite_loop))
     test_passed = list(set(test_passed))
+
+    # To avoid the total sum is higher than 100%, if an instance is in infinite_loop and test_failed at the same time, then it will be counted as test_failed
+    for instance in infinite_loop[:]:
+        if instance in test_failed:
+            infinite_loop.remove(instance)
 
     txt_fp = Path(args.report_dir).joinpath(f"{args.model}_{dataset}_compileReport_from_"+str(args.source_lang)+"_to_"+str(args.target_lang)+".txt")
     with open(txt_fp, "w", encoding="utf-8") as report:
