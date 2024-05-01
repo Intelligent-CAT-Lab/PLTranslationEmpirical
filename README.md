@@ -19,6 +19,8 @@ Authors are [Rangeet Pan][rangeet]* [Ali Reza Ibrahimzada][ali]*, [Rahul Krishna
 [rahul]: http://rkrsn.us/
 [reyhaneh]: https://reyhaneh.cs.illinois.edu/index.htm
 
+# 🚨🚨🚨 [Code Lingua Leaderboard](https://codetlingua.github.io) 🚨🚨🚨
+
 ### Install
 This repository contains the source code for reproducing the results in our paper. Please start by cloning this repository:
 ```
