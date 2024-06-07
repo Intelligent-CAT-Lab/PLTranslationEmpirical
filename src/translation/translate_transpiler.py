@@ -29,7 +29,16 @@ def main(args):
                 print('Filename: ', files[i])
                 subprocess.run("rm -rf target/ *.rs rust-toolchain.toml Cargo.* compile_commands.json a.out", check=True, capture_output=True, shell=True, timeout=30)
                 bin_name = files[i].split('.')[0]
-                subprocess.run(f'intercept-build sh -c "cc dataset/codenet/{args.source_lang}/Code/{bin_name}.c"', check=True, capture_output=True, shell=True, timeout=30)
+
+                # check if the c file includes <math.h>
+                lm_flag = False
+                with open(f"dataset/codenet/{args.source_lang}/Code/{files[i]}", 'r') as f:
+                    c_code = f.read()
+                    if '<math.h>' in c_code:
+                        lm_flag = True
+                
+                flags = " ".join(["-lm" if lm_flag else ""])
+                subprocess.run(f'intercept-build sh -c "cc dataset/codenet/{args.source_lang}/Code/{bin_name}.c {flags}"', check=True, capture_output=True, shell=True, timeout=30)
                 subprocess.run(f'c2rust transpile --binary {bin_name} compile_commands.json', check=True, capture_output=True, shell=True, timeout=30)
 
                 with open(f"dataset/codenet/{args.source_lang}/TestCases/"+ files[i].split(".")[0]+"_in.txt" , 'r') as f:
