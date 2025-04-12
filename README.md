@@ -164,6 +164,27 @@ bash scripts/clean_generations.sh StarCoder codenet
 
 Please note that for the above commands, you can change the dataset and model name to execute the same thing for other datasets and models. Moreover, you can refer to [`/prompts`](/prompts/README.md) for different vanilla and repair prompts used in our study.
 
+### Please Cite as
+```
+@inproceedings{10.1145/3597503.3639226,
+  author = {Pan, Rangeet and Ibrahimzada, Ali Reza and Krishna, Rahul and Sankar, Divya and Wassi, Lambert Pouguem and Merler, Michele and Sobolev, Boris and Pavuluri, Raju and Sinha, Saurabh and Jabbarvand, Reyhaneh},
+  title = {Lost in Translation: A Study of Bugs Introduced by Large Language Models while Translating Code},
+  year = {2024},
+  isbn = {9798400702174},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3597503.3639226},
+  doi = {10.1145/3597503.3639226},
+  abstract = {Code translation aims to convert source code from one programming language (PL) to another. Given the promising abilities of large language models (LLMs) in code synthesis, researchers are exploring their potential to automate code translation. The prerequisite for advancing the state of LLM-based code translation is to understand their promises and limitations over existing techniques. To that end, we present a large-scale empirical study to investigate the ability of general LLMs and code LLMs for code translation across pairs of different languages, including C, C++, Go, Java, and Python. Our study, which involves the translation of 1,700 code samples from three benchmarks and two real-world projects, reveals that LLMs are yet to be reliably used to automate code translation---with correct translations ranging from 2.1\% to 47.3\% for the studied LLMs. Further manual investigation of unsuccessful translations identifies 15 categories of translation bugs. We also compare LLM-based code translation with traditional non-LLM-based approaches. Our analysis shows that these two classes of techniques have their own strengths and weaknesses. Finally, insights from our study suggest that providing more context to LLMs during translation can help them produce better results. To that end, we propose a prompt-crafting approach based on the symptoms of erroneous translations; this improves the performance of LLM-based code translation by 5.5\% on average. Our study is the first of its kind, in terms of scale and breadth, that provides insights into the current limitations of LLMs in code translation and opportunities for improving them. Our dataset---consisting of 1,700 code samples in five PLs with 10K+ tests, 43K+ translated code, 1,748 manually labeled bugs, and 1,365 bug-fix pairs---can help drive research in this area.},
+  booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},
+  articleno = {82},
+  numpages = {13},
+  keywords = {code translation, bug taxonomy, llm},
+  location = {Lisbon, Portugal},
+  series = {ICSE '24}
+}
+```
+
 ### Artifacts
 Please download the `artifacts.zip` file from our [Zenodo](https://zenodo.org/doi/10.5281/zenodo.8190051) repository. We have organized the artifacts as follows:
 1. RQ1 - Translations: This directory contains the translations from all LLMs and for all datasets. We have added an excel file to show a detailed breakdown of the translation results.
